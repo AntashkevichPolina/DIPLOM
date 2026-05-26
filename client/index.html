@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АТОМТЕХ Склад - Система управления приборами</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+          rel="stylesheet">
+    <link rel="stylesheet" 
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css?v=1.0.1">
+  
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" onclick="loadDashboard()">
+                <i class="bi bi-cpu"></i> АТОМТЕХ Склад
+            </a>
+            <div class="d-flex align-items-center">
+                <div class="dropdown me-2">
+                    <button class="btn btn-outline-secondary position-relative" type="button" id="notificationsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-bell"></i>
+                        <span id="notificationsBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="display: none; font-size: 10px;">
+                            0
+                        </span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end p-0" id="notificationsList" style="width: 380px;">
+                        <div class="notifications-header">
+                            <h6 class="m-0">Уведомления</h6>
+                        </div>
+                        <div class="text-center py-3 text-muted">Загрузка...</div>
+                    </div>
+                </div>
+                <button class="theme-toggle" id="themeToggleBtn" title="Переключить тему">
+                    <i class="bi bi-moon-stars" id="themeIcon"></i>
+                </button>
+                <div class="dropdown ms-2">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle"></i>
+                        <span id="user-name">Гость</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li><h6 class="dropdown-header" id="user-role">Не авторизован</h6></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#" onclick="loadProfile()"><i class="bi bi-person"></i> Профиль</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#" id="logout-btn"><i class="bi bi-box-arrow-right"></i> Выйти</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2 col-md-3 p-0">
+                <div class="sidebar p-3">
+                    <ul class="nav flex-column" id="main-nav">
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-10 col-md-9 p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="mb-0" id="page-title">АТОМТЕХ Склад</h2>
+                    <div id="page-actions"></div>
+                </div>
+                <div id="content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Добро пожаловать в систему!</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Система управления складом приборов НПУП «АТОМТЕХ».</p>
+                            <p class="text-muted">Для начала работы войдите в систему.</p>
+                            <button class="btn btn-atomtech" onclick="showLoginModal()">
+                                <i class="bi bi-box-arrow-in-right"></i> Войти в систему
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header bg-atomtech text-white">
+                    <h5 class="modal-title" id="loginModalLabel">Вход в систему</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="loginAlert" class="alert alert-danger d-none"></div>
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Пользователь</label>
+                            <select class="form-select" id="loginEmail" name="loginEmail" required>
+                                <option value="">Загрузка пользователей...</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Пароль</label>
+                            <input type="password" class="form-control" id="loginPassword" name="loginPassword" 
+                                   placeholder="Введите пароль" autocomplete="off">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                    <button type="button" class="btn btn-atomtech" onclick="performLogin()">Войти</button>
+                </div> 
+            </div>
+         </div>
+        </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js?v=1.0.1"></script>
+</body>
+</html>

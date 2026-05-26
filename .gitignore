@@ -1,0 +1,22 @@
+# Зависимости
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# Файлы окружения (ВАЖНО! Не публикуем пароли)
+.env
+.env.local
+.env.*.local
+
+# IDE и системные файлы
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Логи
+logs/
+*.log
